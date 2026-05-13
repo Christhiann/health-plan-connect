@@ -18,22 +18,22 @@ export function Hero() {
           className="flex flex-col gap-6"
         >
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-brand/20 bg-brand-soft px-4 py-1.5 text-xs font-semibold text-brand">
-            <Sparkles className="h-3.5 w-3.5" /> Consultoria especializada e gratuita
+            <Sparkles className="h-3.5 w-3.5" /> BaseSaúde · Consultoria especializada
           </span>
           <h1 className="text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            O plano de saúde <span className="text-gradient">ideal</span> para você e sua família
+            Encontre o plano de saúde <span className="text-gradient">ideal</span> com atendimento especializado
           </h1>
           <p className="max-w-xl text-lg text-muted-foreground">
-            Compare as melhores operadoras do mercado com um consultor humano. Atendimento personalizado, sem custo, e direto pelo WhatsApp.
+            Bradesco Saúde, Amil e outras operadoras de confiança. Cotação rápida, sem burocracia, direto pelo WhatsApp com um consultor humano.
           </p>
           <div className="flex flex-wrap gap-3">
             <a
-              href={waLink("Olá! Gostaria de receber uma cotação de plano de saúde.")}
+              href={waLink("Olá! Quero falar com um consultor da BaseSaúde sobre planos de saúde.")}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 text-base font-semibold text-white shadow-elegant transition-transform hover:scale-[1.03]"
             >
-              <MessageCircle className="h-5 w-5" /> Falar no WhatsApp
+              <MessageCircle className="h-5 w-5" /> Falar com consultor
             </a>
             <a
               href="#planos"

@@ -3,7 +3,6 @@ import { HeartPulse, MessageCircle } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 
 const links = [
-  { href: "#sobre", label: "Sobre" },
   { href: "#planos", label: "Planos" },
   { href: "#beneficios", label: "Benefícios" },
   { href: "#depoimentos", label: "Depoimentos" },
@@ -23,7 +22,7 @@ export function Navbar() {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl gradient-brand text-brand-foreground">
             <HeartPulse className="h-5 w-5" />
           </div>
-          <span className="font-display text-lg font-bold tracking-tight">SaúdeCerta</span>
+          <span className="font-display text-lg font-bold tracking-tight">BaseSaúde</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -33,13 +32,13 @@ export function Navbar() {
           ))}
         </nav>
         <a
-          href={waLink("Olá! Gostaria de uma cotação de plano de saúde.")}
+          href={waLink("Olá! Gostaria de uma cotação de plano de saúde com a BaseSaúde.")}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:scale-105"
         >
           <MessageCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">Fale conosco</span>
+          <span className="hidden sm:inline">Falar com consultor</span>
         </a>
       </div>
     </motion.header>

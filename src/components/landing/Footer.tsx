@@ -1,5 +1,5 @@
 import { HeartPulse, Phone, MessageCircle, Instagram, MapPin } from "lucide-react";
-import { PHONE_DISPLAY, INSTAGRAM, LOCATION, waLink } from "@/lib/whatsapp";
+import { PHONE_DISPLAY, INSTAGRAM, LOCATION, BRAND_NAME, waLink } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
@@ -10,10 +10,10 @@ export function Footer() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl gradient-brand">
               <HeartPulse className="h-5 w-5 text-brand-foreground" />
             </div>
-            <span className="font-display text-lg font-bold">SaúdeCerta</span>
+            <span className="font-display text-lg font-bold">{BRAND_NAME}</span>
           </div>
           <p className="mt-4 max-w-xs text-sm opacity-70">
-            Consultoria especializada em planos de saúde. Atendimento humano, transparente e gratuito.
+            Consultoria especializada em planos de saúde. Atendimento humano, transparente e direto pelo WhatsApp.
           </p>
         </div>
         <div>
@@ -31,7 +31,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs opacity-60">
-        © {new Date().getFullYear()} SaúdeCerta · Consultoria de planos de saúde
+        © {new Date().getFullYear()} {BRAND_NAME} · Consultoria de planos de saúde
       </div>
     </footer>
   );
