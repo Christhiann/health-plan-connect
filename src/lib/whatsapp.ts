@@ -1,5 +1,5 @@
-export const WHATSAPP_NUMBER = "5511999999999";
-export const PHONE_DISPLAY = "(11) 99999-9999";
+export const WHATSAPP_NUMBER = "5595981008792";
+export const PHONE_DISPLAY = "(95) 981008792";
 export const INSTAGRAM = "@basesaude";
 export const LOCATION = "São Paulo, SP — Atendimento Nacional";
 export const BRAND_NAME = "BaseSaúde";

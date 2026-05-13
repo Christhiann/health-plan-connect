@@ -21,14 +21,11 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-center gap-3"><Phone className="h-4 w-4" /> {PHONE_DISPLAY}</li>
             <li><a href={waLink("Olá!")} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:opacity-80"><MessageCircle className="h-4 w-4" /> WhatsApp direto</a></li>
-            <li className="flex items-center gap-3"><Instagram className="h-4 w-4" /> {INSTAGRAM}</li>
-            <li className="flex items-center gap-3"><MapPin className="h-4 w-4" /> {LOCATION}</li>
+            
+            
           </ul>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider opacity-60">Atendimento</h4>
-          <p className="mt-4 text-sm opacity-80">Segunda a sábado<br/>08h às 20h</p>
-        </div>
+   
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs opacity-60">
         © {new Date().getFullYear()} {BRAND_NAME} · Consultoria de planos de saúde
