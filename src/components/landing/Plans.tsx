@@ -1,32 +1,17 @@
-import { motion } from "framer-motion";
-import { Check, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useMemo, useState } from "react";
+import { Check, MessageCircle, Sparkles } from "lucide-react";
+import { plans, operators, type Operator } from "@/data/plans";
 import { waLink } from "@/lib/whatsapp";
 
-const plans = [
-  {
-    name: "Essencial",
-    desc: "Perfeito para quem busca proteção básica com excelente custo-benefício.",
-    price: "A partir de R$ 189/mês",
-    benefits: ["Consultas e exames", "Pronto-socorro 24h", "Rede regional", "Sem coparticipação"],
-    highlight: false,
-  },
-  {
-    name: "Família+",
-    desc: "Cobertura completa para toda a família com rede ampla e nacional.",
-    price: "A partir de R$ 389/mês",
-    benefits: ["Cobertura nacional", "Internação e cirurgias", "Maternidade incluída", "Telemedicina 24/7"],
-    highlight: true,
-  },
-  {
-    name: "Premium",
-    desc: "Top de linha com hospitais referência e atendimento exclusivo.",
-    price: "A partir de R$ 749/mês",
-    benefits: ["Hospitais premium", "Apartamento privativo", "Reembolso ampliado", "Atendimento internacional"],
-    highlight: false,
-  },
-];
-
 export function Plans() {
+  const [filter, setFilter] = useState<Operator>("Todos");
+
+  const filtered = useMemo(
+    () => (filter === "Todos" ? plans : plans.filter((p) => p.company === filter)),
+    [filter],
+  );
+
   return (
     <section id="planos" className="bg-brand-soft/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -36,68 +21,79 @@ export function Plans() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand">Planos disponíveis</span>
-          <h2 className="mt-2 text-3xl font-bold md:text-5xl">Escolha o plano que cabe no seu momento</h2>
-          <p className="mt-4 text-muted-foreground">Comparativo justo e transparente entre as principais operadoras.</p>
+          <span className="text-sm font-semibold uppercase tracking-wider text-brand">
+            Planos disponíveis
+          </span>
+          <h2 className="mt-2 text-3xl font-bold md:text-5xl">
+            Escolha a operadora ideal para você
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Filtre por operadora e fale direto com um consultor pelo WhatsApp.
+          </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative flex flex-col rounded-3xl border bg-background p-8 transition-all hover:-translate-y-1 ${
-                plan.highlight ? "border-brand shadow-elegant" : "border-border shadow-card"
-              }`}
-            >
-              {plan.highlight && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-brand px-4 py-1 text-xs font-semibold text-brand-foreground">
-                  Mais escolhido
-                </span>
-              )}
-              <h3 className="text-2xl font-bold">{plan.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{plan.desc}</p>
-              <p className="mt-6 text-lg font-semibold text-brand">{plan.price}</p>
-              <ul className="mt-6 flex-1 space-y-3">
-                {plan.benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-health" /> {b}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={waLink(`Olá, tenho interesse no plano ${plan.name}. Gostaria de mais informações.`)}
-                target="_blank"
-                rel="noreferrer"
-                className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
-                  plan.highlight ? "gradient-brand text-brand-foreground" : "bg-foreground text-background"
+        <div className="mt-10 flex flex-wrap justify-center gap-2 md:gap-3">
+          {operators.map((op) => {
+            const active = filter === op;
+            return (
+              <button
+                key={op}
+                onClick={() => setFilter(op)}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all md:px-5 md:py-2.5 ${
+                  active
+                    ? "border-transparent gradient-brand text-brand-foreground shadow-card"
+                    : "border-border bg-background text-foreground hover:border-brand/40"
                 }`}
               >
-                <MessageCircle className="h-4 w-4" /> Tenho interesse
-              </a>
-            </motion.div>
-          ))}
+                {op}
+              </button>
+            );
+          })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-12 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-brand/30 bg-background p-8 text-center"
-        >
-          <h3 className="text-xl font-semibold">Quer ver mais opções?</h3>
-          <p className="text-sm text-muted-foreground">Receba o catálogo completo com todas as operadoras parceiras.</p>
-          <a
-            href={waLink("Olá! Gostaria de receber o catálogo completo de planos de saúde.")}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-2 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-semibold text-white shadow-card transition-transform hover:scale-105"
-          >
-            <MessageCircle className="h-4 w-4" /> Ver mais planos no WhatsApp
-          </a>
+        <motion.div layout className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((plan, i) => (
+              <motion.div
+                key={`${plan.company}-${plan.plan}`}
+                layout
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, delay: i * 0.05 }}
+                className={`relative flex flex-col rounded-3xl border bg-background p-7 transition-all hover:-translate-y-1 hover:shadow-elegant ${
+                  plan.highlight ? "border-brand shadow-elegant" : "border-border shadow-card"
+                }`}
+              >
+                {plan.highlight && (
+                  <span className="absolute -top-3 left-6 inline-flex items-center gap-1 rounded-full gradient-brand px-3 py-1 text-[11px] font-semibold text-brand-foreground">
+                    <Sparkles className="h-3 w-3" /> Premium
+                  </span>
+                )}
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  {plan.company}
+                </span>
+                <h3 className="mt-1 text-2xl font-bold tracking-tight">{plan.plan}</h3>
+                <p className="mt-4 text-base font-semibold text-brand">{plan.price}</p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-foreground/80">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-health" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={waLink(plan.whatsappMessage)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-sm font-semibold text-white shadow-card transition-transform hover:scale-[1.02]"
+                >
+                  <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+                </a>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
